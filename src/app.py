@@ -202,36 +202,40 @@ def predict_image(image, model, device, class_names):
 def plot_probabilities(probs, class_names):
     """
     Sınıf olasılıklarını görselleştirir.
-    
-    Parametreler:
-        probs: Olasılık değerleri
-        class_names: Sınıf isimleri
-    
-    Returns:
-        fig: Matplotlib şekil nesnesi
     """
-    # Olasılıklara göre sırala
-    indices = np.argsort(probs)[::-1]
-    top_probs = probs[indices][:5]  # En yüksek 5 olasılık
-    top_classes = [class_names[i] for i in indices[:5]]
-    
-    fig, ax = plt.subplots(figsize=(10, 5))
-    y_pos = np.arange(len(top_classes))
-    
-    # Yatay çubuk grafiği oluştur
-    bars = ax.barh(y_pos, top_probs, align='center')
-    ax.set_yticks(y_pos)
-    ax.set_yticklabels(top_classes)
-    ax.invert_yaxis()  # Etiketleri yukarıdan aşağıya sıralar
-    ax.set_xlabel('Olasılık')
-    ax.set_title('En Yüksek 5 Tahmin')
-    
-    # Çubukların değerlerini ekle
-    for i, v in enumerate(top_probs):
-        ax.text(v + 0.01, i, f"{v:.4f}", va='center')
-    
-    plt.tight_layout()
-    return fig
+    try:
+        # Olasılıklara göre sırala
+        indices = np.argsort(probs)[::-1]
+        top_probs = probs[indices][:5]  # En yüksek 5 olasılık
+        top_classes = [class_names[i] for i in indices[:5]]
+        
+        fig, ax = plt.subplots(figsize=(10, 5))
+        y_pos = np.arange(len(top_classes))
+        
+        # Yatay çubuk grafiği oluştur
+        bars = ax.barh(y_pos, top_probs, align='center')
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels(top_classes)
+        ax.invert_yaxis()  # Etiketleri yukarıdan aşağıya sıralar
+        ax.set_xlabel('Olasılık')
+        ax.set_title('En Yüksek 5 Tahmin')
+        
+        # Çubukların değerlerini ekle
+        for i, v in enumerate(top_probs):
+            ax.text(v + 0.01, i, f"{v:.4f}", va='center')
+        
+        plt.tight_layout()
+        return fig
+    except Exception as e:
+        # Hata durumunda basit bir uyarı göster ve yine de bir şeyler göstermeye çalış
+        st.warning(f"Grafik oluştururken hata: {str(e)}")
+        
+        # Basit bir şekilde manuel grafik oluştur
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.text(0.5, 0.5, "Grafik oluşturulamadı", 
+                horizontalalignment='center', verticalalignment='center',
+                transform=ax.transAxes, fontsize=14)
+        return fig
 
 # Ana fonksiyon
 def main():
@@ -304,17 +308,24 @@ def main():
             
             # Olasılık grafiği
             st.subheader("Sınıf Olasılıkları")
-            prob_fig = plot_probabilities(probs, class_names_english)
-            st.pyplot(prob_fig)
             
-            # Güvenirlik seviyesi
-            if top_prob > 0.7:
-                st.success("✅ Yüksek güvenirlik seviyesi")
-            elif top_prob > 0.4:
-                st.warning("⚠️ Orta güvenirlik seviyesi")
+            # Olasılıkların formatını kontrol et
+            if isinstance(probs, np.ndarray) and len(probs) == len(class_names_english):
+                prob_fig = plot_probabilities(probs, class_names_english)
+                st.pyplot(prob_fig)
             else:
-                st.error("❌ Düşük güvenirlik seviyesi")
-    
+                st.warning("Olasılık değerleri geçerli bir format değil. Demo modunda çalışılıyor.")
+                # Demo olasılıklar oluştur
+                demo_probs = np.zeros(len(class_names_english))
+                demo_probs[class_names_english.index(predicted_class)] = top_prob
+                remaining = 1.0 - top_prob
+                for i in range(len(class_names_english)):
+                    if class_names_english[i] != predicted_class:
+                        demo_probs[i] = remaining / (len(class_names_english) - 1)
+                
+                prob_fig = plot_probabilities(demo_probs, class_names_english)
+                st.pyplot(prob_fig)
+            
     elif uploaded_file is not None:
         st.error("Model yüklenemediği için tahmin yapılamıyor. Lütfen model dosyalarının doğru konumda olduğundan emin olun.")
 
