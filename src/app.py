@@ -67,6 +67,7 @@ def load_model():
     """
     Eğitilen modeli ve sınıf bilgilerini yükler ve önbelleğe alır.
     """
+    
     try:
         # Cihazı seç
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -76,7 +77,7 @@ def load_model():
         with open('./models/class_info.json', 'r') as f:
             class_info = json.load(f)
         
-        
+
         class_names_italian = class_info['class_names']
         class_names_english = class_info['english_class_names']
         class_to_idx = class_info['class_to_idx']
