@@ -76,6 +76,7 @@ def load_model():
         with open('./models/class_info.json', 'r') as f:
             class_info = json.load(f)
         
+        
         class_names_italian = class_info['class_names']
         class_names_english = class_info['english_class_names']
         class_to_idx = class_info['class_to_idx']
