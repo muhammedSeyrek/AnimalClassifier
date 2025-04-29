@@ -61,6 +61,7 @@ class AnimalClassifier(torch.nn.Module):
         model.eval()
         return model
 
+
 @st.cache_resource
 def load_model():
     """
