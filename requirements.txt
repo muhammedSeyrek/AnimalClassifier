@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 torch==2.2.0
 torchvision==0.17.0
 numpy==1.26.0
@@ -8,3 +9,14 @@ streamlit>=1.24.0
 scikit-learn>=1.2.0
 tqdm>=4.65.0
 seaborn>=0.12.0
+=======
+streamlit>=1.26.0
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+Pillow>=9.0.0
+matplotlib>=3.7.0
+fastapi>=0.103.1
+uvicorn>=0.23.2
+python-multipart>=0.0.6
+>>>>>>> 6bdcd5defac51558e1e5f2802d8b8ac0008f316e
