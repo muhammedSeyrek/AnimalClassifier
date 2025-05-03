@@ -106,15 +106,6 @@ Model performansının detaylı analizi için [karışıklık matrisi](train/con
 ### Eğitim Grafiği
 [Eğitim süreci grafiği](train/validationGraph.png) modelin öğrenme sürecini göstermektedir.
 
-## 🎯 Gelecek Özellikler
-- [ ] Daha fazla hayvan türü desteği
-- [ ] Model performans metrikleri gösterimi
-- [ ] Batch görüntü işleme
-- [ ] API entegrasyonu
-- [ ] Mobil uygulama versiyonu
-- [ ] Görüntü ön işleme seçenekleri
-- [ ] Multi-language support
-
 ## 🔧 Sorun Giderme
 
 ### Yaygın Sorunlar ve Çözümleri
@@ -137,14 +128,6 @@ Model performansının detaylı analizi için [karışıklık matrisi](train/con
 - Uygulama Python 3.10 veya 3.11 ile en iyi performansı göstermektedir.
 - Görüntü işleme için NumPy kullanmayan bir yaklaşım benimsenmiştir, bu sayede uyumluluk sorunları aşılmıştır.
 - Streamlit Cloud deployment sırasında sadece gerekli dosyaların yüklenmesini sağlayın.
-
-## 🤝 Katkıda Bulunma
-Projeye katkıda bulunmak isterseniz:
-1. Repository'yi fork edin
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
-4. Branch'inizi push edin (`git push origin feature/AmazingFeature`)
-5. Pull Request oluşturun
 
 ## 📄 Lisans
 Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
