@@ -277,3 +277,5 @@ def main():
 # Uygulamayı çalıştır
 if __name__ == "__main__":
     main()
+
+    
