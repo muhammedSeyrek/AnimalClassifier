@@ -96,9 +96,9 @@ Bu uygulama, ImageNet üzerinde önceden eğitilmiş ResNet18 mimarisini kullana
 
 ## 📈 Model Performansı
 Modelin Animals-10 test seti üzerindeki performans metrikleri:
-- **Doğruluk (Accuracy)**: %85+ (en iyi sonuç)
-- **F1 Skoru**: 0.85+
-- **Eğitim Süresi**: 30 dakika
+- **Doğruluk (Accuracy)**: %95+ (en iyi sonuç)
+- **F1 Skoru**: 0.95+
+- **Eğitim Süresi**: 6 saat
 
 ### Karışıklık Matrisi
 Model performansının detaylı analizi için [karışıklık matrisi](train/confusionMatrix.png) görüntüsünü inceleyebilirsiniz.
