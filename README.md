@@ -124,10 +124,23 @@ Model performansının detaylı analizi için [karışıklık matrisi](train/con
 
 4. **GPU/CPU uyumluluk**: Uygulama hem CPU hem de GPU ortamlarda çalışacak şekilde tasarlanmıştır.
 
+
+## İlgili Uygulama Resimleri
+![dragAndDrop](https://github.com/user-attachments/assets/2645ffa0-0bc4-4060-81b7-8353a2cb5cd4)
+![choose](https://github.com/user-attachments/assets/580af7c3-6595-4e53-aebf-cfb1c572ac8f)
+
+
 ## 📝 Notlar
 - Uygulama Python 3.10 veya 3.11 ile en iyi performansı göstermektedir.
 - Görüntü işleme için NumPy kullanmayan bir yaklaşım benimsenmiştir, bu sayede uyumluluk sorunları aşılmıştır.
 - Streamlit Cloud deployment sırasında sadece gerekli dosyaların yüklenmesini sağlayın.
+
+## Dipnot
+Bu projeyi yaparken birkaç zorlukla karşılaştım. Özellikle ResNet18 modelini Animals-10 veri setiyle eğitirken optimizasyon konusunda bayağı uğraştım. Batch size ve learning rate ayarlarını bulmak için birkaç deney yapmam gerekti. 
+Streamlit ile arayüz hazırlamak düşündüğümden kolay oldu ama deployment kısmında model boyutu (100MB+) yüzünden biraz zorlandım. Başta model çok büyük olduğu için GitHub'a yüklerken sorun yaşadım, sonra dosya yapısını optimize ettim.
+GPU ile eğitim yapmasaydım herhalde 6 saat yerine günlerce sürecekti. PyTorch'un transfer learning özellikleri sayesinde sıfırdan model eğitmek zorunda kalmadım, bu da büyük avantaj oldu.
+Sonraki versiyonda özellik çıkarma katmanlarını biraz daha iyileştirmeyi ve mobil uygulamaya dönüştürmeyi düşünüyorum. Projeyi inceleyip geri bildirim verirseniz sevinirim.
+
 
 ## 📄 Lisans
 Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
